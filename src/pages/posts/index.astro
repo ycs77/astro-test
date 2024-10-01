@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content'
+import Layout from '../../layouts/Layout.astro'
+import Navigation from '../../components/Navigation.astro'
+
+const allPosts = await getCollection('posts')
+---
+
+<Layout title="Welcome to Astro.">
+  <Navigation />
+
+  <main>
+    <h1>Posts</h1>
+    <p>This is where I will post about my journey learning Astro.</p>
+    <ul>
+      {allPosts.map((post) => <li><a href={`/posts/${post.slug}`}>{post.data.title}</a></li>)}
+    </ul>
+  </main>
+</Layout>
+
+<style>
+main {
+  color: white;
+}
+a {
+  color: white;
+}
+</style>

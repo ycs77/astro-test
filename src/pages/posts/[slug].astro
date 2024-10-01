@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+import Layout from '../../layouts/Layout.astro'
+import Navigation from '../../components/Navigation.astro'
+
+interface Props {
+  entry: CollectionEntry<'posts'>
+}
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts')
+  return posts.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }))
+}
+
+const { entry } = Astro.props
+const { Content } = await entry.render()
+---
+
+<Layout title={entry.data.title}>
+  <Navigation />
+
+  <main>
+    <h1>{entry.data.title}</h1>
+    <p>Written by {entry.data.author}</p>
+    <Content />
+  </main>
+</Layout>
+
+<style>
+main {
+  color: white;
+}
+</style>
