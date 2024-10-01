@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Navigation from '../components/Navigation.astro'
+
+const allPosts = await Astro.glob('./posts/*.md')
+---
+
+<Layout title="Welcome to Astro.">
+  <Navigation />
+
+  <main>
+    <h1>Posts</h1>
+    <p>This is where I will post about my journey learning Astro.</p>
+    <ul>
+      {allPosts.map((post) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)}
+    </ul>
+  </main>
+</Layout>
+
+<style>
+main {
+  color: white;
+}
+a {
+  color: white;
+}
+</style>

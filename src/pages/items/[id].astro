@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+
+export const prerender = false;
+
+const { id } = Astro.params;
+
+let item: {
+  id: number
+  tilte: string
+}
+
+try {
+  const response = await fetch(`https://astro-api-test-df45hr.vercel.app/api/items/${id}`);
+  item = await response.json();
+} catch (error) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title="Item 1">
+  <Navigation />
+
+  <main>
+    <h1>{item.tilte}</h1>
+  </main>
+</Layout>
+
+<style>
+main {
+  color: white;
+}
+</style>
