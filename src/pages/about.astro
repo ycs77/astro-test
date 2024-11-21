@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro'
 import Navigation from '../components/Navigation.astro'
 import AboutVue from '../components/AboutVue.vue'
+
+import { message, i18n } from 'astro:my-plugin'
 ---
 
 <Layout title="Welcome to Astro.">
@@ -13,6 +15,7 @@ import AboutVue from '../components/AboutVue.vue'
 
   <main>
     <h1>About</h1>
+    <p>defaultLocale: {i18n?.defaultLocale}</p>
 
     <button type="button" id="logBtn" class="btn btn-primary">
       Button
