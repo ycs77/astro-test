@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content'
+import { getCollection, render } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 import Layout from '../../layouts/Layout.astro'
 import Navigation from '../../components/Navigation.astro'
@@ -11,13 +11,13 @@ interface Props {
 export async function getStaticPaths() {
   const posts = await getCollection('posts')
   return posts.map(entry => ({
-    params: { slug: entry.slug },
+    params: { id: entry.id },
     props: { entry },
   }))
 }
 
 const { entry } = Astro.props
-const { Content } = await entry.render()
+const { Content } = await render(entry)
 ---
 
 <Layout title={entry.data.title}>

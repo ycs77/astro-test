@@ -1,6 +1,6 @@
 ---
-title: 'My First Blog Post'
-pubDate: 2022-07-01
+title: 'My Third Blog Post'
+pubDate: 2022-07-03
 description: 'This is the first post of my new Astro blog.'
 author: 'Astro Learner'
 image:
