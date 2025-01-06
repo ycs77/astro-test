@@ -7,11 +7,6 @@ export const prerender = false
 const { id } = Astro.params
 if (!id) throw new Error('ID is required')
 
-let item: {
-  id: number
-  title: string
-}
-
 const response = await fetch(`https://astro-api-test-df45hr.vercel.app/api/items/${id}`)
 if (response.status === 404) {
   return new Response(null, {
@@ -19,7 +14,11 @@ if (response.status === 404) {
     statusText: 'Not found',
   })
 }
-item = await response.json()
+
+const item: {
+  id: number
+  title: string
+} = await response.json()
 ---
 
 <Layout title="Item 1">
